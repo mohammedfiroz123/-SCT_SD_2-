@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        input {
+            padding: 12px 15px;
+            margin: 12px 0;
+            font-size: 16px;
+            border-radius: 30px;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px 0;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 30px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff006f;
+            transform: translateY(-3px);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container p {
+            font-size: 16px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Guess the Number Game</h2>
+    <p>I'm thinking of a number between 1 and 100.</p>
+    <input type="number" id="userGuess" placeholder="Enter your guess" min="1" max="100">
+    <button onclick="submitGuess()">Submit Guess</button>
+    <button onclick="resetGame()">Reset Game</button>
+    
+    <p id="result"></p>
+</div>
+
+<script>
+    let numberToGuess = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function submitGuess() {
+        const userGuess = parseInt(document.getElementById("userGuess").value);
+        attempts++;
+
+        const result = document.getElementById("result");
+
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            result.innerHTML = "Please enter a valid number between 1 and 100.";
+            return;
+        }
+
+        if (userGuess < numberToGuess) {
+            result.innerHTML = "Too low! Try again.";
+        } else if (userGuess > numberToGuess) {
+            result.innerHTML = "Too high! Try again.";
+        } else {
+            result.innerHTML = `Congratulations! You guessed the number ${numberToGuess} in ${attempts} attempts.`;
+        }
+    }
+
+    function resetGame() {
+        numberToGuess = Math.floor(Math.random() * 100) + 1;
+        attempts = 0;
+        document.getElementById("userGuess").value = '';
+        document.getElementById("result").innerHTML = '';
+    }
+</script>
+
+</body>
+</html>
