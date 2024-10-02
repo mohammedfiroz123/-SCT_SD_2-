@@ -1,2 +1,2 @@
-# -SCT_SD_2-
-Random Number Guessing Game: A fun, interactive game built using Python's Tkinter library. The game generates a random number between 1 and 100, and the player has to guess it. The program provides feedback on whether the guess is too high or too low until the correct number is guessed.
+Random Number Guessing Game: A fun, interactive game built using Python's Tkinter library for backend logic, with HTML and JavaScript for the frontend interface. The game generates a random number between 1 and 100, and the player has to guess it. The program provides feedback on whether the guess is too high or too low until the correct number is guessed.
+This includes the mention of HTML and JavaScript for the frontend.
