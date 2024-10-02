@@ -1,0 +1,29 @@
+let numberToGuess = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+
+function submitGuess() {
+    const userGuess = parseInt(document.getElementById("userGuess").value);
+    attempts++;
+
+    const result = document.getElementById("result");
+
+    if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+        result.innerHTML = "Please enter a valid number between 1 and 100.";
+        return;
+    }
+
+    if (userGuess < numberToGuess) {
+        result.innerHTML = "Too low! Try again.";
+    } else if (userGuess > numberToGuess) {
+        result.innerHTML = "Too high! Try again.";
+    } else {
+        result.innerHTML = `Congratulations! You guessed the number ${numberToGuess} in ${attempts} attempts.`;
+    }
+}
+
+function resetGame() {
+    numberToGuess = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    document.getElementById("userGuess").value = '';
+    document.getElementById("result").innerHTML = '';
+}
